@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-function Signup() {
-  const [form, setForm] = useState({ name: '', email: '', password: '' });
+function Login() {
+  const [form, setForm] = useState({ email: '', password: '' });
   const [msg, setMsg] = useState('');
   const navigate = useNavigate();
 
@@ -12,9 +12,9 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/signup', form);
+      const res = await axios.post('http://localhost:5000/api/auth/login', form);
       localStorage.setItem('token', res.data.token);
-      setMsg('Signup successful!');
+      setMsg('Login successful!');
       navigate('/dashboard');
     } catch (err) {
       if (err.response?.data?.msg) {
@@ -27,12 +27,11 @@ function Signup() {
 
   return (
     <div style={formContainerStyle}>
-      <h2>Signup</h2>
+      <h2>Login</h2>
       <form onSubmit={handleSubmit} style={formStyle}>
-        <input name="name" placeholder="Name" onChange={handleChange} required style={inputStyle} />
         <input name="email" type="email" placeholder="Email" onChange={handleChange} required style={inputStyle} />
         <input name="password" type="password" placeholder="Password" onChange={handleChange} required style={inputStyle} />
-        <button type="submit" style={btnStyle}>Signup</button>
+        <button type="submit" style={btnStyle}>Login</button>
       </form>
       {msg && <p style={{ color: msg.startsWith('Error') ? 'red' : 'green' }}>{msg}</p>}
     </div>
@@ -72,4 +71,4 @@ const btnStyle = {
   cursor: 'pointer',
 };
 
-export default Signup;
+export default Login;
