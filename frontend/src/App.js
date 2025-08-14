@@ -67,15 +67,16 @@ function Dashboard() {
       <section>
         <h2>Employee List</h2>
         <EmployeeList
-          key={refresh}
-          onEdit={setEditEmployee}
-          onView={employee => setViewEmployee(employee)}
+        key={refresh}
+        onEdit={setEditEmployee}
+        onView={setViewEmployee}
         />
       </section>
 
       {viewEmployee && (
         <EmployeeViewModal employee={viewEmployee} onClose={() => setViewEmployee(null)} />
       )}
+
     </div>
   );
 }

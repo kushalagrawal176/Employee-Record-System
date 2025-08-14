@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function EmployeeList({ onEdit, onView }) {
+function EmployeeList({ onEdit, onView, onAssignTask }) {
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
@@ -51,9 +51,15 @@ function EmployeeList({ onEdit, onView }) {
                 <td>{employee.department}</td>
                 <td>${employee.salary}</td>
                 <td>
-                  <button onClick={() => onView && onView(employee)} style={styles.viewButton}>View</button>{' '}
-                  <button onClick={() => onEdit && onEdit(employee)} style={styles.editButton}>Edit</button>{' '}
-                  <button onClick={() => handleDelete(employee._id)} style={styles.deleteButton}>Delete</button>
+                  <button onClick={() => onView && onView(employee)} style={styles.viewButton}>
+                    View
+                  </button>{' '}
+                  <button onClick={() => onEdit && onEdit(employee)} style={styles.editButton}>
+                    Edit
+                  </button>{' '}
+                  <button onClick={() => handleDelete(employee._id)} style={styles.deleteButton}>
+                    Delete
+                  </button>{' '}
                 </td>
               </tr>
             ))}
@@ -77,7 +83,7 @@ const styles = {
     padding: '6px 10px',
     cursor: 'pointer',
     marginRight: 4,
-    marginLeft: 110
+    marginLeft: 110,
   },
   editButton: {
     backgroundColor: '#388e3c',
